@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_elegant_number_button/flutter_elegant_number_button.dart';
 import 'package:royex_task/core/constants/colors.dart';
 
-class FloatinButtonGroup extends StatelessWidget {
+class FloatinButtonGroup extends StatefulWidget {
   const FloatinButtonGroup({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<FloatinButtonGroup> createState() => _FloatinButtonGroupState();
+}
+
+class _FloatinButtonGroupState extends State<FloatinButtonGroup> {
+  int defaultValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,26 +25,11 @@ class FloatinButtonGroup extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            Expanded(flex: 4, child: _buildCounterButtons()),
             Expanded(
-              flex: 1,
-              child: ElegantNumberButton(
-                initialValue: 0,
-                minValue: 0,
-                maxValue: 10,
-                step: 0.5,
-                decimalPlaces: 1,
-                onChanged: (value) {
-                  // get the latest value from here
-                  // setState(() {
-                  //   _defaultValue = value;
-                  // });
-                },
-              ),
-            ),
-            Expanded(
-              flex: 1,
+              flex: 3,
               child: Container(
-                margin: const EdgeInsets.only(right: 10),
+                margin: const EdgeInsets.only(right: 5),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
@@ -56,7 +47,7 @@ class FloatinButtonGroup extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 1,
+              flex: 3,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     elevation: 0,
@@ -75,6 +66,64 @@ class FloatinButtonGroup extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  Row _buildCounterButtons() {
+    return Row(
+      children: [
+        Container(
+          width: 40,
+          decoration: BoxDecoration(
+              border: Border.all(color: kLightGreyColor.withOpacity(0.2))),
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                defaultValue--;
+                if (defaultValue <= 0) defaultValue = 0;
+              });
+            },
+            child: const Text(
+              '-',
+              style: TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold, color: kGreyColor),
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: kLightGreyColor.withOpacity(0.2))),
+          padding: const EdgeInsets.all(5),
+          width: 50,
+          height: 42,
+          child: Center(
+            child: Text(
+              defaultValue.toString(),
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: kBlackColor),
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border: Border.all(color: kLightGreyColor.withOpacity(0.2))),
+          width: 40,
+          child: MaterialButton(
+            onPressed: () {
+              setState(() {
+                defaultValue++;
+              });
+            },
+            child: const Text(
+              '+',
+              style: TextStyle(
+                  fontSize: 20, fontWeight: FontWeight.bold, color: kGreyColor),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

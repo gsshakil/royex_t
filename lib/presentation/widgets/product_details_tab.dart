@@ -15,6 +15,12 @@ class ProductDetailsTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String originHtml = productEntity.bodyHtml;
+    String descriptionHtml = originHtml.split('<h5>Specifications</h5>')[0];
+    String postDescriptionHtml = originHtml.split('<h5>Specifications</h5>')[1];
+    String specificationHtml =
+        postDescriptionHtml.split('<h5>Downloads</h5>')[0];
+    String downloadHtml = postDescriptionHtml.split('<h5>Downloads</h5>')[1];
     return ValueListenableBuilder(
         valueListenable: ProductTabUtility.index,
         builder: (context, value, child) {
@@ -106,13 +112,13 @@ class ProductDetailsTab extends StatelessWidget {
                   ],
                 ),
                 ProductTabUtility.index.value == 0
-                    ? Html(data: productEntity.bodyHtml)
+                    ? Html(data: descriptionHtml)
                     : const SizedBox(),
                 ProductTabUtility.index.value == 1
-                    ? const Text('Specification')
+                    ? Html(data: specificationHtml)
                     : const SizedBox(),
                 ProductTabUtility.index.value == 2
-                    ? Html(data: productEntity.bodyHtml)
+                    ? Html(data: downloadHtml)
                     : const SizedBox(),
               ],
             ),

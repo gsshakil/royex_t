@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:royex_task/core/constants/colors.dart';
 import 'package:royex_task/core/utility/product_tab_utility.dart';
 import 'package:royex_task/presentation/screens/cart_screen.dart';
@@ -35,13 +36,36 @@ class LandingScreen extends StatelessWidget {
                 onTap: (value) {
                   BottomNavUtility.index.value = value;
                 },
-                items: const [
-                  BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+                items: [
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.category), label: ''),
-                  BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+                      icon: SvgPicture.asset('assets/images/home-icon.svg'),
+                      activeIcon: SvgPicture.asset(
+                        'assets/images/home-icon.svg',
+                        color: kRedColor,
+                      ),
+                      label: ''),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.shopping_bag), label: ''),
+                      icon: SvgPicture.asset('assets/images/cat-icon.svg'),
+                      activeIcon: SvgPicture.asset(
+                        'assets/images/cat-icon.svg',
+                        color: kRedColor,
+                      ),
+                      label: ''),
+                  BottomNavigationBarItem(
+                      icon: SvgPicture.asset('assets/images/profile-icon.svg'),
+                      activeIcon: SvgPicture.asset(
+                        'assets/images/profile-icon.svg',
+                        color: kRedColor,
+                      ),
+                      label: ''),
+                  BottomNavigationBarItem(
+                      icon: SvgPicture.asset(
+                          'assets/images/shopping-bag-icon.svg'),
+                      activeIcon: SvgPicture.asset(
+                        'assets/images/shopping-bag-icon.svg',
+                        color: kRedColor,
+                      ),
+                      label: ''),
                 ]),
           );
         });

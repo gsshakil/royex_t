@@ -75,61 +75,67 @@ class FeaturedSection extends StatelessWidget {
           ),
         ),
 
-        // In Stock?
+        // In Stock/out of stock?
         Positioned(
           right: 20,
           bottom: 5,
           child: productEntity.status == "active"
-              ? Container(
-                  width: 90,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                  color: kGreenColor.withOpacity(0.05),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'In Stock',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: kGreenColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      const SizedBox(width: 5),
-                      const Icon(
-                        Icons.beenhere_rounded,
-                        color: kGreenColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                )
-              : Container(
-                  width: 110,
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
-                  color: kGreenColor.withOpacity(0.05),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Out of Stock',
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                              color: kRedColor,
-                              fontWeight: FontWeight.bold,
-                            ),
-                      ),
-                      const SizedBox(width: 5),
-                      const Icon(
-                        Icons.beenhere_rounded,
-                        color: kRedColor,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ),
+              ? _buildInStock(context)
+              : _buildOutOfStock(context),
         ),
       ],
+    );
+  }
+
+  Container _buildOutOfStock(BuildContext context) {
+    return Container(
+      width: 110,
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      color: kGreenColor.withOpacity(0.05),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'Out of Stock',
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: kRedColor,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          const SizedBox(width: 5),
+          const Icon(
+            Icons.beenhere_rounded,
+            color: kRedColor,
+            size: 16,
+          )
+        ],
+      ),
+    );
+  }
+
+  Container _buildInStock(BuildContext context) {
+    return Container(
+      width: 90,
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      color: kGreenColor.withOpacity(0.05),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            'In Stock',
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: kGreenColor,
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          const SizedBox(width: 5),
+          const Icon(
+            Icons.beenhere_rounded,
+            color: kGreenColor,
+            size: 16,
+          )
+        ],
+      ),
     );
   }
 }
