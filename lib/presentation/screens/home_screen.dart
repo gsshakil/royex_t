@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:royex_task/core/constants/colors.dart';
 import 'package:royex_task/core/di.dart';
-import 'package:royex_task/core/utility/product_tab_utility.dart';
-import 'package:royex_task/domain/entities/product_entity.dart';
 import 'package:royex_task/presentation/blocs/bloc/product_bloc.dart';
 import 'package:royex_task/presentation/widgets/box_slider.dart';
 import 'package:royex_task/presentation/widgets/featured_section.dart';
+import 'package:royex_task/presentation/widgets/floating_button_group.dart';
 import 'package:royex_task/presentation/widgets/model_brand_price.dart';
 import 'package:royex_task/presentation/widgets/product_details_tab.dart';
+import 'package:royex_task/presentation/widgets/rating_section.dart';
+import 'package:royex_task/presentation/widgets/related_items.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -42,23 +42,27 @@ class HomeScreen extends StatelessWidget {
                   final List<String> imageList = state.productEntity.images
                       .map((image) => image.src)
                       .toList();
-                  return ListView(
-                    shrinkWrap: true,
+                  return Stack(
                     children: [
-                      // Featured Image
-                      FeaturedSection(productEntity: state.productEntity),
-                      // Box Carousel
-                      BoxSlider(imageList: imageList),
-                      // Model, Brand, Rating Price
-                      ModelBrandPrice(productEntity: state.productEntity),
-                      //Tabs
-                      ProductDetailsTab(productEntity: state.productEntity),
-
-                      // Ratings
-
-                      // Related Items
-
+                      ListView(
+                        children: [
+                          // Featured Image
+                          FeaturedSection(productEntity: state.productEntity),
+                          // Box Carousel
+                          BoxSlider(imageList: imageList),
+                          // Model, Brand, Rating Price
+                          ModelBrandPrice(productEntity: state.productEntity),
+                          //Tabs
+                          ProductDetailsTab(productEntity: state.productEntity),
+                          // Ratings
+                          const RatingSection(),
+                          // Related Items
+                          const RelatedItems(),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
                       // Buy Now/Add to cart with counter
+                      const FloatinButtonGroup()
                     ],
                   );
                 } else {

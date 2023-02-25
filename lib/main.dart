@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:royex_task/core/di.dart';
 import 'package:royex_task/presentation/screens/home_screen.dart';
+import 'package:royex_task/presentation/screens/landing_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: const LandingScreen(),
     );
   }
 }

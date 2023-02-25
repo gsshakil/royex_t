@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:royex_task/core/constants/colors.dart';
 import 'package:royex_task/domain/entities/product_entity.dart';
+import 'package:royex_task/presentation/widgets/floating_discount_display.dart';
 
 class FeaturedSection extends StatelessWidget {
   const FeaturedSection({
@@ -37,26 +38,11 @@ class FeaturedSection extends StatelessWidget {
                   color: kRedColor,
                 ),
               ),
-              Positioned(
+              const Positioned(
                 left: 2.5,
                 top: 2.5,
-                child: Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: kWhiteColor),
-                    borderRadius: BorderRadius.circular(50),
-                    color: kRedColor,
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'Off\n7%',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: kWhiteColor,
-                      ),
-                    ),
-                  ),
+                child: FloatingDiscountDisplay(
+                  isSmall: false,
                 ),
               ),
             ],

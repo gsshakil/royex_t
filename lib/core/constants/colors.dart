@@ -7,4 +7,4 @@ const kWhiteColor = Color(0xFFFFFFFF);
 const kBlackColor = Colors.black;
 const kGreyColor = Colors.grey;
 const kDarkGreyColor = Color(0xFF464A4F);
-final kLightGreyColor = Colors.grey.shade100;
+const kLightGreyColor = Color(0xFFD9D9D9);
